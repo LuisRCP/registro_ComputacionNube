@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `registro`
+-- Base de datos: `registro_alumnos`
 --
 
 -- --------------------------------------------------------
@@ -121,7 +121,8 @@ CREATE TABLE `tbl_ope_alumno` (
   `nombre_Alumno` varchar(50) DEFAULT NULL,
   `nombre_ApellidoPat` varchar(50) DEFAULT NULL,
   `nombre_ApellidoMat` varchar(50) DEFAULT NULL,
-  `grupoId` int(11) DEFAULT NULL
+  `grupoId` int(11) DEFAULT NULL,
+  `activo` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -209,3 +210,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+ALTER TABLE `tbl_ope_alumno` ADD COLUMN `activo` tinyint(1) DEFAULT 1;
