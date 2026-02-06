@@ -26,29 +26,31 @@ class GrupoController {
     }
 
     public function obtenerCarreras() {
-        return $this->carrera->obtenerTodas();
+        return $this->carrera->obtenerActivas();
     }
 
     public function obtenerTurnos() {
-        return $this->turno->obtenerTodos();
+        return $this->turno->obtenerActivos();
     }
 
     public function obtenerGrados() {
-        return $this->grado->obtenerTodos();
+        return $this->grado->obtenerActivos();
     }
 
-    public function crear($turnoId, $gradoId, $grupoNombre) {
+    public function crear($turnoId, $gradoId, $carreraId, $grupoNombre) {
         $this->grupo->turnoId = $turnoId;
         $this->grupo->gradoId = $gradoId;
+        $this->grupo->carreraId = $carreraId;
         $this->grupo->grupo_Nombre = $grupoNombre;
 
         return $this->grupo->crear();
     }
 
-    public function actualizar($id, $turnoId, $gradoId, $grupoNombre) {
+    public function actualizar($id, $turnoId, $gradoId, $carreraId, $grupoNombre) {
         $this->grupo->grupoId = $id;
         $this->grupo->turnoId = $turnoId;
         $this->grupo->gradoId = $gradoId;
+        $this->grupo->carreraId = $carreraId;
         $this->grupo->grupo_Nombre = $grupoNombre;
 
         return $this->grupo->actualizar();
@@ -64,9 +66,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'crear':
             $turno = $_POST['turno'];
             $grado = $_POST['grado'];
+            $carreraId = $_POST['carreraId'];
             $grupoNombre = $_POST['grupo']; // Nombre generado automaticamente
 
-            $resultado = $controller->crear($turno, $grado, $grupoNombre);
+            $resultado = $controller->crear($turno, $grado, $carreraId, $grupoNombre);
             if ($resultado) {
                 header('Location: ../Views/RegistrarGrupo.php?msg=created');
             } else {

@@ -90,4 +90,20 @@ class Alumno {
         }
         return false;
     }
+
+    public function deshabilitarPorGrupos($grupoIds) {
+        if (empty($grupoIds)) return true;
+        $placeholders = implode(',', array_fill(0, count($grupoIds), '?'));
+        $query = "UPDATE " . $this->table . " SET activo = 0 WHERE grupoId IN ($placeholders)";
+        $stmt = $this->conn->prepare($query);
+        return $stmt->execute($grupoIds);
+    }
+
+    public function reactivarPorGrupos($grupoIds) {
+        if (empty($grupoIds)) return true;
+        $placeholders = implode(',', array_fill(0, count($grupoIds), '?'));
+        $query = "UPDATE " . $this->table . " SET activo = 1 WHERE grupoId IN ($placeholders)";
+        $stmt = $this->conn->prepare($query);
+        return $stmt->execute($grupoIds);
+    }
 }
