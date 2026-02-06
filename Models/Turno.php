@@ -33,6 +33,16 @@ class Turno {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function crear() {
+        $query = "INSERT INTO " . $this->table . " (turno_Nombre, turno_Sigla) VALUES (:nombre, :sigla)";
+        $stmt = $this->conn->prepare($query);
+        $this->turno_Nombre = htmlspecialchars(strip_tags($this->turno_Nombre));
+        $this->turno_Sigla = htmlspecialchars(strip_tags($this->turno_Sigla));
+        $stmt->bindParam(':nombre', $this->turno_Nombre);
+        $stmt->bindParam(':sigla', $this->turno_Sigla);
+        return $stmt->execute();
+    }
+
     public function cambiarEstado($id, $activo) {
         $query = "UPDATE " . $this->table . " SET activo = :activo WHERE turnoId = :id";
         $stmt = $this->conn->prepare($query);

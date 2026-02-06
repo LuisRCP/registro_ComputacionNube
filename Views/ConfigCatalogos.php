@@ -9,8 +9,13 @@ $grados = $controller->obtenerGrados();
 $tabActiva = isset($_GET['tab']) ? $_GET['tab'] : 'carreras';
 
 $mensaje = '';
-if (isset($_GET['msg']) && $_GET['msg'] === 'updated') {
-    $mensaje = 'Catálogo actualizado exitosamente';
+$esError = isset($_GET['error']);
+if (isset($_GET['msg'])) {
+    if ($_GET['msg'] === 'updated') $mensaje = 'Catálogo actualizado exitosamente';
+    if ($_GET['msg'] === 'created') $mensaje = 'Registro agregado exitosamente';
+}
+if ($esError) {
+    $mensaje = 'Error al procesar la solicitud';
 }
 ?>
 <!DOCTYPE html>
@@ -31,7 +36,7 @@ if (isset($_GET['msg']) && $_GET['msg'] === 'updated') {
 
     <div class="container">
         <?php if ($mensaje): ?>
-            <div class="alert alert-success"><?php echo $mensaje; ?></div>
+            <div class="alert <?php echo $esError ? 'alert-error' : 'alert-success'; ?>"><?php echo $mensaje; ?></div>
         <?php endif; ?>
 
         <div class="card card-wide">
@@ -45,6 +50,14 @@ if (isset($_GET['msg']) && $_GET['msg'] === 'updated') {
 
             <!-- Tab Carreras -->
             <div class="tab-content <?php echo $tabActiva === 'carreras' ? 'tab-visible' : ''; ?>" id="tab-carreras">
+                <form action="../Controllers/CatalogoController.php" method="POST" class="catalog-form">
+                    <input type="hidden" name="action" value="crearCarrera">
+                    <div class="catalog-form-fields">
+                        <input type="text" name="nombre" placeholder="Nombre de la carrera" required>
+                        <input type="text" name="siglas" placeholder="Siglas" required>
+                        <button type="submit" class="btn btn-add">Registrar</button>
+                    </div>
+                </form>
                 <table class="table">
                     <thead>
                         <tr>
@@ -90,6 +103,14 @@ if (isset($_GET['msg']) && $_GET['msg'] === 'updated') {
 
             <!-- Tab Turnos -->
             <div class="tab-content <?php echo $tabActiva === 'turnos' ? 'tab-visible' : ''; ?>" id="tab-turnos">
+                <form action="../Controllers/CatalogoController.php" method="POST" class="catalog-form">
+                    <input type="hidden" name="action" value="crearTurno">
+                    <div class="catalog-form-fields">
+                        <input type="text" name="nombre" placeholder="Nombre del turno" required>
+                        <input type="text" name="sigla" placeholder="Sigla" required>
+                        <button type="submit" class="btn btn-add">Registrar</button>
+                    </div>
+                </form>
                 <table class="table">
                     <thead>
                         <tr>
@@ -135,6 +156,13 @@ if (isset($_GET['msg']) && $_GET['msg'] === 'updated') {
 
             <!-- Tab Grados -->
             <div class="tab-content <?php echo $tabActiva === 'grados' ? 'tab-visible' : ''; ?>" id="tab-grados">
+                <form action="../Controllers/CatalogoController.php" method="POST" class="catalog-form">
+                    <input type="hidden" name="action" value="crearGrado">
+                    <div class="catalog-form-fields">
+                        <input type="text" name="nombre" placeholder="Nombre del grado" required>
+                        <button type="submit" class="btn btn-add">Registrar</button>
+                    </div>
+                </form>
                 <table class="table">
                     <thead>
                         <tr>

@@ -36,6 +36,23 @@ class CatalogoController {
         return $this->grado->obtenerTodos();
     }
 
+    public function crearCarrera($nombre, $siglas) {
+        $this->carrera->carrera_Nombre = $nombre;
+        $this->carrera->carrera_Siglas = $siglas;
+        return $this->carrera->crear();
+    }
+
+    public function crearTurno($nombre, $sigla) {
+        $this->turno->turno_Nombre = $nombre;
+        $this->turno->turno_Sigla = $sigla;
+        return $this->turno->crear();
+    }
+
+    public function crearGrado($nombre) {
+        $this->grado->grado_Nombre = $nombre;
+        return $this->grado->crear();
+    }
+
     public function toggleCarrera($id, $activo) {
         $this->carrera->cambiarEstado($id, $activo);
 
@@ -98,6 +115,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'toggleGrado':
             $controller->toggleGrado($_POST['id'], $_POST['activo']);
             header('Location: ../Views/ConfigCatalogos.php?tab=grados&msg=updated');
+            exit;
+
+        case 'crearCarrera':
+            $resultado = $controller->crearCarrera($_POST['nombre'], $_POST['siglas']);
+            if ($resultado) {
+                header('Location: ../Views/ConfigCatalogos.php?tab=carreras&msg=created');
+            } else {
+                header('Location: ../Views/ConfigCatalogos.php?tab=carreras&error=1');
+            }
+            exit;
+
+        case 'crearTurno':
+            $resultado = $controller->crearTurno($_POST['nombre'], $_POST['sigla']);
+            if ($resultado) {
+                header('Location: ../Views/ConfigCatalogos.php?tab=turnos&msg=created');
+            } else {
+                header('Location: ../Views/ConfigCatalogos.php?tab=turnos&error=1');
+            }
+            exit;
+
+        case 'crearGrado':
+            $resultado = $controller->crearGrado($_POST['nombre']);
+            if ($resultado) {
+                header('Location: ../Views/ConfigCatalogos.php?tab=grados&msg=created');
+            } else {
+                header('Location: ../Views/ConfigCatalogos.php?tab=grados&error=1');
+            }
             exit;
     }
 }

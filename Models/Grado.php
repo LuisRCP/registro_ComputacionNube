@@ -32,6 +32,14 @@ class Grado {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function crear() {
+        $query = "INSERT INTO " . $this->table . " (grado_Nombre) VALUES (:nombre)";
+        $stmt = $this->conn->prepare($query);
+        $this->grado_Nombre = htmlspecialchars(strip_tags($this->grado_Nombre));
+        $stmt->bindParam(':nombre', $this->grado_Nombre);
+        return $stmt->execute();
+    }
+
     public function cambiarEstado($id, $activo) {
         $query = "UPDATE " . $this->table . " SET activo = :activo WHERE gradoId = :id";
         $stmt = $this->conn->prepare($query);
