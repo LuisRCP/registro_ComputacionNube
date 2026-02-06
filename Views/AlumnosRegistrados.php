@@ -23,6 +23,7 @@ if (isset($_GET['msg'])) {
         <a href="RegistrarAlumno.php">Registrar Alumno</a>
         <a href="RegistrarGrupo.php">Registrar Grupo</a>
         <a href="AlumnosRegistrados.php" class="active">Alumnos Registrados</a>
+        <a href="ConfigCatalogos.php">Conf. Catálogos</a>
     </nav>
 
     <div class="container">

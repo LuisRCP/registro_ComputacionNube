@@ -24,7 +24,7 @@ class AlumnoController {
     }
 
     public function obtenerGrupos() {
-        return $this->grupo->obtenerTodos();
+        return $this->grupo->obtenerActivos();
     }
 
     public function crear($nombre, $apellidoPat, $apellidoMat, $grupoId) {

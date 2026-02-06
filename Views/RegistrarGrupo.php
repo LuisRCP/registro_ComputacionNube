@@ -27,6 +27,7 @@ if (isset($_GET['error'])) {
         <a href="RegistrarAlumno.php">Registrar Alumno</a>
         <a href="RegistrarGrupo.php" class="active">Registrar Grupo</a>
         <a href="AlumnosRegistrados.php">Alumnos Registrados</a>
+        <a href="ConfigCatalogos.php">Conf. Catálogos</a>
     </nav>
 
     <div class="container">
@@ -41,13 +42,14 @@ if (isset($_GET['error'])) {
 
             <form action="../Controllers/GrupoController.php" method="POST">
                 <input type="hidden" name="action" value="crear">
+                <input type="hidden" name="carreraId" id="carreraId" value="">
 
                 <div class="form-group">
                     <label for="carrera">Carrera</label>
                     <select id="carrera" name="carrera" required>
-                        <option value="">Seleccionar carrera</option>
+                        <option value="" data-id="">Seleccionar carrera</option>
                         <?php while ($row = $carreras->fetch(PDO::FETCH_ASSOC)): ?>
-                            <option value="<?php echo htmlspecialchars($row['carrera_Siglas']); ?>">
+                            <option value="<?php echo htmlspecialchars($row['carrera_Siglas']); ?>" data-id="<?php echo $row['carreraId']; ?>">
                                 <?php echo htmlspecialchars($row['carrera_Nombre']); ?>
                             </option>
                         <?php endwhile; ?>
@@ -94,6 +96,12 @@ if (isset($_GET['error'])) {
         const gradoSelect = document.getElementById('grado');
         const grupoInput = document.getElementById('grupo');
         const btnRegistrar = document.getElementById('btnRegistrar');
+        const carreraIdInput = document.getElementById('carreraId');
+
+        carreraSelect.addEventListener('change', function() {
+            const selected = carreraSelect.options[carreraSelect.selectedIndex];
+            carreraIdInput.value = selected.dataset.id || '';
+        });
 
         function generarNombreGrupo() {
             const carrera = carreraSelect.value;
