@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-02-2026 a las 01:48:41
+-- Tiempo de generación: 06-02-2026 a las 02:54:47
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -30,36 +30,37 @@ SET time_zone = "+00:00";
 CREATE TABLE `tbl_cat_carrera` (
   `carreraId` int(11) NOT NULL,
   `carrera_Nombre` varchar(60) DEFAULT NULL,
-  `carrera_Siglas` varchar(20) DEFAULT NULL
+  `carrera_Siglas` varchar(20) DEFAULT NULL,
+  `activo` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tbl_cat_carrera`
 --
 
-INSERT INTO `tbl_cat_carrera` (`carreraId`, `carrera_Nombre`, `carrera_Siglas`) VALUES
-(1, 'LICENCIATURA EN PEDAGOGÍA', 'LPED'),
-(2, 'LICENCIATURA EN ADMINISTRACIÓN DE EMPRESAS', 'LAE'),
-(3, 'LICENCIATURA EN CULTURA FÍSICA Y EDUCACIÓN DEL DEPORTE', 'LCFED'),
-(4, 'LICENCIATURA EN RELACIONES INTERNACIONALES', 'LRI'),
-(5, 'LICENCIATURA EN PSICOLOGÍA', 'LPSIC'),
-(6, 'INGENIERO ARQUITECTO', 'IAR'),
-(7, 'LICENCIATURA EN ADMINISTRACIÓN DE EMPRESAS TURÍSTICAS', 'LAET'),
-(8, 'LICENCIATURA EN DISEÑO GRÁFICO', 'LDG'),
-(9, 'LICENCIATURA EN GASTRONOMÍA', 'LGAS'),
-(10, 'LICENCIATURA EN DERECHO', 'LIDER'),
-(11, 'INGENIERÍA EN SISTEMAS COMPUTACIONALES', 'ISC'),
-(12, 'LICENCIATURA EN INGENIERÍA EN LOGÍSTICA Y TRANSPORTE', 'ILT'),
-(13, 'LICENCIATURA EN DISEÑO DE MODAS', 'LDM'),
-(14, 'LICENCIATURA EN MERCADOTECNIA Y PUBLICIDAD', 'LMP'),
-(15, 'LICENCIATURA EN CONTADURÍA PÙBLICA Y FINANZAS', 'LCPF'),
-(17, 'LICENCIATURA EN DISEÑO DE INTERIORES', 'LDI'),
-(18, 'INGENIERÍA MECÁNICA AUTOMOTRIZ', 'IMA'),
-(19, 'LICENCIATURA EN PERIODISMO Y CIENCIAS DE LA COMUNICACIÓN', 'LPCC'),
-(20, 'LICENCIATURA EN IDIOMAS', 'LIDIO'),
-(21, 'LICENCIATURA EN INFORMÁTICA ADMINISTRATIVA Y FISCAL', 'LIAF'),
-(22, 'LICENCIATURA EN PEDAGOGÍA MIXTA', 'LPEDMX'),
-(23, 'LICENCIATURA EN ADMINISTRACIÓN DE EMPRESAS', 'LAEMX');
+INSERT INTO `tbl_cat_carrera` (`carreraId`, `carrera_Nombre`, `carrera_Siglas`, `activo`) VALUES
+(1, 'LICENCIATURA EN PEDAGOGÍA', 'LPED', 1),
+(2, 'LICENCIATURA EN ADMINISTRACIÓN DE EMPRESAS', 'LAE', 1),
+(3, 'LICENCIATURA EN CULTURA FÍSICA Y EDUCACIÓN DEL DEPORTE', 'LCFED', 1),
+(4, 'LICENCIATURA EN RELACIONES INTERNACIONALES', 'LRI', 1),
+(5, 'LICENCIATURA EN PSICOLOGÍA', 'LPSIC', 1),
+(6, 'INGENIERO ARQUITECTO', 'IAR', 1),
+(7, 'LICENCIATURA EN ADMINISTRACIÓN DE EMPRESAS TURÍSTICAS', 'LAET', 1),
+(8, 'LICENCIATURA EN DISEÑO GRÁFICO', 'LDG', 1),
+(9, 'LICENCIATURA EN GASTRONOMÍA', 'LGAS', 1),
+(10, 'LICENCIATURA EN DERECHO', 'LIDER', 1),
+(11, 'INGENIERÍA EN SISTEMAS COMPUTACIONALES', 'ISC', 1),
+(12, 'LICENCIATURA EN INGENIERÍA EN LOGÍSTICA Y TRANSPORTE', 'ILT', 1),
+(13, 'LICENCIATURA EN DISEÑO DE MODAS', 'LDM', 1),
+(14, 'LICENCIATURA EN MERCADOTECNIA Y PUBLICIDAD', 'LMP', 1),
+(15, 'LICENCIATURA EN CONTADURÍA PÙBLICA Y FINANZAS', 'LCPF', 1),
+(17, 'LICENCIATURA EN DISEÑO DE INTERIORES', 'LDI', 1),
+(18, 'INGENIERÍA MECÁNICA AUTOMOTRIZ', 'IMA', 1),
+(19, 'LICENCIATURA EN PERIODISMO Y CIENCIAS DE LA COMUNICACIÓN', 'LPCC', 1),
+(20, 'LICENCIATURA EN IDIOMAS', 'LIDIO', 1),
+(21, 'LICENCIATURA EN INFORMÁTICA ADMINISTRATIVA Y FISCAL', 'LIAF', 1),
+(22, 'LICENCIATURA EN PEDAGOGÍA MIXTA', 'LPEDMX', 1),
+(23, 'LICENCIATURA EN ADMINISTRACIÓN DE EMPRESAS', 'LAEMX', 1);
 
 -- --------------------------------------------------------
 
@@ -69,25 +70,26 @@ INSERT INTO `tbl_cat_carrera` (`carreraId`, `carrera_Nombre`, `carrera_Siglas`) 
 
 CREATE TABLE `tbl_cat_grado` (
   `gradoId` int(11) NOT NULL,
-  `grado_Nombre` varchar(50) DEFAULT NULL
+  `grado_Nombre` varchar(50) DEFAULT NULL,
+  `activo` tinyint(4) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tbl_cat_grado`
 --
 
-INSERT INTO `tbl_cat_grado` (`gradoId`, `grado_Nombre`) VALUES
-(1, '1'),
-(2, '2'),
-(3, '3'),
-(4, '4'),
-(5, '5'),
-(6, '6'),
-(7, '7'),
-(8, '8'),
-(9, '9'),
-(10, '10'),
-(11, '11');
+INSERT INTO `tbl_cat_grado` (`gradoId`, `grado_Nombre`, `activo`) VALUES
+(1, '1', 1),
+(2, '2', 1),
+(3, '3', 1),
+(4, '4', 1),
+(5, '5', 1),
+(6, '6', 1),
+(7, '7', 1),
+(8, '8', 1),
+(9, '9', 1),
+(10, '10', 1),
+(11, '11', 1);
 
 -- --------------------------------------------------------
 
@@ -98,17 +100,18 @@ INSERT INTO `tbl_cat_grado` (`gradoId`, `grado_Nombre`) VALUES
 CREATE TABLE `tbl_cat_turno` (
   `turnoId` int(11) NOT NULL,
   `turno_Nombre` varchar(50) DEFAULT NULL,
-  `turno_Sigla` varchar(10) DEFAULT NULL
+  `turno_Sigla` varchar(10) DEFAULT NULL,
+  `activo` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tbl_cat_turno`
 --
 
-INSERT INTO `tbl_cat_turno` (`turnoId`, `turno_Nombre`, `turno_Sigla`) VALUES
-(1, 'Matutino', 'M'),
-(2, 'Vespertino', 'V'),
-(3, 'Mixto', 'MX');
+INSERT INTO `tbl_cat_turno` (`turnoId`, `turno_Nombre`, `turno_Sigla`, `activo`) VALUES
+(1, 'Matutino', 'M', 1),
+(2, 'Vespertino', 'V', 1),
+(3, 'Mixto', 'MX', 1);
 
 -- --------------------------------------------------------
 
@@ -135,7 +138,8 @@ CREATE TABLE `tbl_ope_grupo` (
   `grupoId` int(11) NOT NULL,
   `turnoId` int(11) DEFAULT NULL,
   `gradoId` int(11) DEFAULT NULL,
-  `grupo_Nombre` varchar(50) DEFAULT NULL
+  `grupo_Nombre` varchar(50) DEFAULT NULL,
+  `activo` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -210,4 +214,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-ALTER TABLE `tbl_ope_alumno` ADD COLUMN `activo` tinyint(1) DEFAULT 1;
