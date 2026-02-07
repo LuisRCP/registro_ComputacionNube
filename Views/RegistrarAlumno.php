@@ -43,17 +43,17 @@ if (isset($_GET['error'])) {
 
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" id="nombre" name="nombre" required>
+                    <input type="text" id="nombre" name="nombre" maxlength="50" required>
                 </div>
 
                 <div class="form-group">
                     <label for="apellido_p">Apellido P.</label>
-                    <input type="text" id="apellido_p" name="apellido_p" required>
+                    <input type="text" id="apellido_p" name="apellido_p" maxlength="50" required>
                 </div>
 
                 <div class="form-group">
                     <label for="apellido_m">Apellido M.</label>
-                    <input type="text" id="apellido_m" name="apellido_m" required>
+                    <input type="text" id="apellido_m" name="apellido_m" maxlength="50">
                 </div>
 
                 <div class="form-group">

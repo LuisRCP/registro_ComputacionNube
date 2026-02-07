@@ -33,6 +33,16 @@ class Carrera {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function crear() {
+        $query = "INSERT INTO " . $this->table . " (carrera_Nombre, carrera_Siglas) VALUES (:nombre, :siglas)";
+        $stmt = $this->conn->prepare($query);
+        $this->carrera_Nombre = htmlspecialchars(strip_tags($this->carrera_Nombre));
+        $this->carrera_Siglas = htmlspecialchars(strip_tags($this->carrera_Siglas));
+        $stmt->bindParam(':nombre', $this->carrera_Nombre);
+        $stmt->bindParam(':siglas', $this->carrera_Siglas);
+        return $stmt->execute();
+    }
+
     public function cambiarEstado($id, $activo) {
         $query = "UPDATE " . $this->table . " SET activo = :activo WHERE carreraId = :id";
         $stmt = $this->conn->prepare($query);
