@@ -68,8 +68,16 @@ if (isset($_GET['error'])) {
                     </select>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Registrar Alumno</button>
+                <button type="submit" class="btn btn-primary" id="btnRegistrar">Registrar Alumno</button>
             </form>
+
+            <script>
+                document.querySelector('form').addEventListener('submit', function() {
+                    var btn = document.getElementById('btnRegistrar');
+                    btn.disabled = true;
+                    btn.textContent = 'Registrando...';
+                });
+            </script>
         </div>
     </div>
 </body>
