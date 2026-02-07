@@ -137,6 +137,11 @@ if (isset($_GET['error'])) {
         carreraSelect.addEventListener('change', generarNombreGrupo);
         turnoSelect.addEventListener('change', generarNombreGrupo);
         gradoSelect.addEventListener('change', generarNombreGrupo);
+
+        document.querySelector('form').addEventListener('submit', function() {
+            btnRegistrar.disabled = true;
+            btnRegistrar.textContent = 'Registrando...';
+        });
     </script>
 </body>
 </html>
